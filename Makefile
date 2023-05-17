@@ -1,10 +1,5 @@
-# Go compiler
 GO = go
-
-# Directory where Go source files are located
 SRC_DIR = ./src
-
-# Executable name
 EXEC = monkey
 
 .PHONY: all build run format test clean

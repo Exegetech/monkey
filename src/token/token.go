@@ -20,12 +20,13 @@ const (
 	MINUS    = "-"
 	ASTERISK = "*"
 	SLASH    = "/"
+	LT       = "<"
+	GT       = ">"
 
-	LT = "<"
-	GT = ">"
-
-  EQ = "=="
-  NOT_EQ = "!="
+	EQ     = "=="
+	NOT_EQ = "!="
+	LTE    = "<="
+	GTE    = ">="
 
 	COMMA     = ","
 	SEMICOLON = ";"
