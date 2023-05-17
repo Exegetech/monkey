@@ -2,6 +2,7 @@ package lexer
 
 import (
 	"github.com/Exegetech/monkey/src/token"
+	"github.com/Exegetech/monkey/src/util"
 )
 
 type Lexer struct {
@@ -32,6 +33,8 @@ func (l *Lexer) readChar() {
 func (l *Lexer) NextToken() token.Token {
   var tok token.Token
 
+  l.skipWhitespace()
+
   switch l.ch {
   case '=':
     tok = newToken(token.ASSIGN, l.ch)
@@ -52,10 +55,52 @@ func (l *Lexer) NextToken() token.Token {
   case 0:
     tok.Literal = ""
     tok.Type = token.EOF
+  default:
+    if util.IsLetter(l.ch) {
+      tok.Literal = l.readIdentifier()
+      tok.Type = token.LookupIdent(tok.Literal)
+
+      return tok
+    } 
+
+    if util.IsDigit(l.ch) {
+      tok.Literal = l.readNumber()
+      tok.Type = token.INT
+
+      return tok
+    }
+    
+    tok = newToken(token.ILLEGAL, l.ch)
   }
 
   l.readChar()
   return tok
+}
+
+func (l *Lexer) readIdentifier() string {
+  position := l.position
+
+  for util.IsLetter(l.ch) {
+    l.readChar()
+  }
+
+  return l.input[position:l.position]
+}
+
+func (l *Lexer) readNumber() string {
+  position := l.position
+
+  for util.IsDigit(l.ch) {
+    l.readChar()
+  }
+
+  return l.input[position:l.position]
+}
+
+func (l *Lexer) skipWhitespace() {
+  for util.IsWhitespace(l.ch) {
+    l.readChar()
+  }
 }
 
 func newToken(tokenType token.TokenType, ch byte) token.Token {
@@ -64,3 +109,12 @@ func newToken(tokenType token.TokenType, ch byte) token.Token {
     Literal: string(ch),
   }
 }
+
+func isLetter(ch byte) bool {
+  isLowerCase := 'a' <= ch && ch <= 'z'
+  isUpperCase := 'A' <= ch && ch <= 'Z'
+  isUnderscore := ch == '_'
+
+  return isLowerCase || isUpperCase || isUnderscore
+}
+
