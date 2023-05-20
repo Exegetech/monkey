@@ -2,7 +2,7 @@ GO = go
 SRC_DIR = ./src
 EXEC = monkey
 
-.PHONY: all build run format test clean
+.PHONY: all build run fmt test clean
 
 all: build
 
@@ -12,7 +12,7 @@ build:
 run:
 	$(GO) run $(SRC_DIR)
 
-format:
+fmt:
 	find $(SRC_DIR) -name "*.go" -exec gofmt -w {} \;
 
 test:
