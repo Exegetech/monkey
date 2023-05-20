@@ -1,10 +1,11 @@
-package parser
+package parser_test
 
 import (
 	"testing"
 
 	"github.com/Exegetech/monkey/src/ast"
 	"github.com/Exegetech/monkey/src/lexer"
+	"github.com/Exegetech/monkey/src/parser"
 )
 
 func TestLetStatement(t *testing.T) {
@@ -17,7 +18,7 @@ func TestLetStatement(t *testing.T) {
   `
 
 	l := lexer.New(input)
-	p := New(l)
+	p := parser.New(l)
 
 	program := p.ParseProgram()
 	checkParserErrors(t, p)
@@ -102,7 +103,7 @@ func TestReturnStatement(t *testing.T) {
   `
 
 	l := lexer.New(input)
-	p := New(l)
+	p := parser.New(l)
 
 	program := p.ParseProgram()
 	checkParserErrors(t, p)

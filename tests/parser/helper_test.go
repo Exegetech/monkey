@@ -1,10 +1,12 @@
-package parser
+package parser_test
 
 import (
 	"testing"
+
+	"github.com/Exegetech/monkey/src/parser"
 )
 
-func checkParserErrors(t *testing.T, p *Parser) {
+func checkParserErrors(t *testing.T, p *parser.Parser) {
 	errors := p.Errors()
 	if len(errors) == 0 {
 		return

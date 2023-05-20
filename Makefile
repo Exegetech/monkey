@@ -1,5 +1,6 @@
 GO = go
 SRC_DIR = ./src
+TEST_DIR = ./tests
 EXEC = monkey
 
 .PHONY: all build run fmt test clean
@@ -13,10 +14,10 @@ run:
 	$(GO) run $(SRC_DIR)
 
 fmt:
-	find $(SRC_DIR) -name "*.go" -exec gofmt -w {} \;
+	find . -name "*.go" -exec gofmt -w {} \;
 
 test:
-		$(GO) test $(SRC_DIR)/...
+		$(GO) test $(TEST_DIR)/...
 
 clean:
 	rm -f $(EXEC)

@@ -1,10 +1,11 @@
-package parser
+package parser_test
 
 import (
 	"testing"
 
 	"github.com/Exegetech/monkey/src/ast"
 	"github.com/Exegetech/monkey/src/lexer"
+	"github.com/Exegetech/monkey/src/parser"
 )
 
 func TestParsingPrefixExpressions(t *testing.T) {
@@ -21,7 +22,7 @@ func TestParsingPrefixExpressions(t *testing.T) {
 
 	for _, tt := range prefixTests {
 		l := lexer.New(tt.input)
-		p := New(l)
+		p := parser.New(l)
 
 		program := p.ParseProgram()
 		checkParserErrors(t, p)
@@ -86,7 +87,7 @@ func TestParsingInfixExpressions(t *testing.T) {
 
 	for _, tt := range infixTests {
 		l := lexer.New(tt.input)
-		p := New(l)
+		p := parser.New(l)
 
 		program := p.ParseProgram()
 		checkParserErrors(t, p)
@@ -181,7 +182,7 @@ func TestOperatorPrecedenceParsing(t *testing.T) {
 
 	for _, tt := range tests {
 		l := lexer.New(tt.input)
-		p := New(l)
+		p := parser.New(l)
 
 		program := p.ParseProgram()
 		checkParserErrors(t, p)

@@ -1,4 +1,4 @@
-package parser
+package parser_test
 
 import (
 	"fmt"
@@ -6,13 +6,14 @@ import (
 
 	"github.com/Exegetech/monkey/src/ast"
 	"github.com/Exegetech/monkey/src/lexer"
+	"github.com/Exegetech/monkey/src/parser"
 )
 
 func TestIdentifierExpression(t *testing.T) {
 	input := "foobar;"
 
 	l := lexer.New(input)
-	p := New(l)
+	p := parser.New(l)
 
 	program := p.ParseProgram()
 	checkParserErrors(t, p)
@@ -61,7 +62,7 @@ func TestIntegerLiteralExpression(t *testing.T) {
 	input := "5;"
 
 	l := lexer.New(input)
-	p := New(l)
+	p := parser.New(l)
 
 	program := p.ParseProgram()
 	checkParserErrors(t, p)
