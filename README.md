@@ -9,6 +9,7 @@ TODO:
 - Power operator
 - Support string, boolean, arrays, dict
 - Debug flat for Pratt parsing
+- Float operation for math
 
 To Trace Pratt Parsing
 
