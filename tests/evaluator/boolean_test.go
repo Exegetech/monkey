@@ -4,17 +4,17 @@ import (
 	"testing"
 )
 
-func TestEvalIntegerExpression(t *testing.T) {
+func TestEvalBooleanExpression(t *testing.T) {
 	tests := []struct {
 		input    string
-		expected int64
+		expected bool
 	}{
-		{"5", 5},
-		{"10", 10},
+		{"true", true},
+		{"false", false},
 	}
 
 	for _, tt := range tests {
 		evaluated := testEval(tt.input)
-		testIntegerObject(t, evaluated, tt.expected)
+		testBooleanObject(t, evaluated, tt.expected)
 	}
 }
